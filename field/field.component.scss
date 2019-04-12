@@ -1,0 +1,42 @@
+@import '../../../../../nvoq-admin-app-color.scss';
+$primary: map-get($theme, primary);
+
+:host {
+    width: 50%;
+    // margin: 25px auto;
+    padding-bottom: 7px;
+    display: block;
+    .mat-form-field, .mat-selection-list {
+      width: 100%;
+    }
+  
+    .mat-radio-button {
+      clear: both;
+      display: block;
+      padding-left: 15px;
+    }
+  
+  }
+
+.toggleChild {
+    width: 100%;
+}
+
+.checkbox-view {
+    padding-left: 16px;
+}
+
+.subheader {
+    padding-left: 16px;
+    margin-bottom: -0.75em;
+}
+
+::ng-deep {
+    [mySelectionList] * .mat-pseudo-checkbox-checked {
+      background: mat-color($primary);
+    }
+
+    [mySelectionList].mat-list-item{
+        height: 1.75em;
+    }
+}

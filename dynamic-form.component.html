@@ -1,0 +1,15 @@
+<ng-container *ngIf="formReady">
+  <form [formGroup]="form">
+    <ng-container *ngFor="let section of sections" [formGroup]="form.controls[section]">
+      <div class="sectionHeading" *ngIf="section !== ''">{{ section | sentenceCase }}</div>
+      <mat-list *ngFor="let field of fieldSet[section]">
+        <ad-field [field]="field"></ad-field>
+        <div [ngxErrors]="field.name">
+          <div *ngFor="let error of errors" [ngxError]="error.name" [when]="error.rules" class="error">
+            {{ error.text }}
+          </div>
+        </div>
+      </mat-list>
+    </ng-container>
+  </form>
+</ng-container>

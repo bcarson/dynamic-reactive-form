@@ -1,0 +1,31 @@
+@import '../../../../nvoq-admin-app-color.scss';
+$primary: map-get($theme, primary);
+
+.navbar-relief {
+    padding-bottom: 3.5em;
+}
+
+.clear-check {
+  opacity: 0;
+}
+
+.select-organization {
+  padding-bottom: 20px;
+}
+
+.non-billable {
+  padding-top: 30px;
+}
+  
+.sectionHeading {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-top: 0.5em;
+    padding-bottom: 0.4em;
+}
+
+.error {
+  font-size: 0.8em;
+  color: red;
+  margin: -15px 0 0 15px;
+}
