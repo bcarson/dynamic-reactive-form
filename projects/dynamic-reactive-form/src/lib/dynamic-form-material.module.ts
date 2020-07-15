@@ -24,4 +24,4 @@ const passThroughArray = [
   imports: passThroughArray,
   exports: passThroughArray
 })
-export class SharedMaterialModule {}
+export class DynamicFormMaterialModule {}

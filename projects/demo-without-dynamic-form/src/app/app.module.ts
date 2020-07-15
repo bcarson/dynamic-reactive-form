@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AppMaterialModule } from './app-material.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppMaterialModule,
     AppRoutingModule,
     MatTabsModule
   ],

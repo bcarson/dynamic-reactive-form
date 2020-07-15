@@ -1,1 +1,28 @@
-<p>new-form works!</p>
+<p>
+  <mat-form-field>
+    <input matInput placeholder="Name">
+    <mat-icon matSuffix>face</mat-icon>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+    <input matInput placeholder="Age">
+    <mat-icon matSuffix>today</mat-icon>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+      <input matInput placeholder="Email">
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-label>Favorite Food</mat-label>
+  </mat-form-field>
+</p>

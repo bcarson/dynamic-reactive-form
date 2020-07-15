@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
-import { SharedMaterialModule } from './material.module';
+import { DynamicFormMaterialModule } from './dynamic-form-material.module';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicFieldComponent } from './dynamic-field/dynamic-field.component';
 
@@ -13,7 +13,7 @@ import { DynamicFieldComponent } from './dynamic-field/dynamic-field.component';
     DynamicFieldComponent,
     NgxErrorsModule,
     ReactiveFormsModule,
-    SharedMaterialModule,
+    DynamicFormMaterialModule,
   ],
   exports: [DynamicFormComponent]
 })
