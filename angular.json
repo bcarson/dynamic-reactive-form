@@ -1,0 +1,289 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "demo-without-dynamic-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/demo-without-dynamic-form",
+      "sourceRoot": "projects/demo-without-dynamic-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/demo-without-dynamic-form",
+            "index": "projects/demo-without-dynamic-form/src/index.html",
+            "main": "projects/demo-without-dynamic-form/src/main.ts",
+            "polyfills": "projects/demo-without-dynamic-form/src/polyfills.ts",
+            "tsConfig": "projects/demo-without-dynamic-form/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/demo-without-dynamic-form/src/favicon.ico",
+              "projects/demo-without-dynamic-form/src/assets"
+            ],
+            "styles": [
+              "projects/demo-without-dynamic-form/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/demo-without-dynamic-form/src/environments/environment.ts",
+                  "with": "projects/demo-without-dynamic-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo-without-dynamic-form:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demo-without-dynamic-form:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo-without-dynamic-form:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/demo-without-dynamic-form/src/test.ts",
+            "polyfills": "projects/demo-without-dynamic-form/src/polyfills.ts",
+            "tsConfig": "projects/demo-without-dynamic-form/tsconfig.spec.json",
+            "karmaConfig": "projects/demo-without-dynamic-form/karma.conf.js",
+            "assets": [
+              "projects/demo-without-dynamic-form/src/favicon.ico",
+              "projects/demo-without-dynamic-form/src/assets"
+            ],
+            "styles": [
+              "projects/demo-without-dynamic-form/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/demo-without-dynamic-form/tsconfig.app.json",
+              "projects/demo-without-dynamic-form/tsconfig.spec.json",
+              "projects/demo-without-dynamic-form/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/demo-without-dynamic-form/e2e/protractor.conf.js",
+            "devServerTarget": "demo-without-dynamic-form:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo-without-dynamic-form:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "demo-with-dynamic-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/demo-with-dynamic-form",
+      "sourceRoot": "projects/demo-with-dynamic-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/demo-with-dynamic-form",
+            "index": "projects/demo-with-dynamic-form/src/index.html",
+            "main": "projects/demo-with-dynamic-form/src/main.ts",
+            "polyfills": "projects/demo-with-dynamic-form/src/polyfills.ts",
+            "tsConfig": "projects/demo-with-dynamic-form/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/demo-with-dynamic-form/src/favicon.ico",
+              "projects/demo-with-dynamic-form/src/assets"
+            ],
+            "styles": [
+              "projects/demo-with-dynamic-form/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/demo-with-dynamic-form/src/environments/environment.ts",
+                  "with": "projects/demo-with-dynamic-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo-with-dynamic-form:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demo-with-dynamic-form:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo-with-dynamic-form:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/demo-with-dynamic-form/src/test.ts",
+            "polyfills": "projects/demo-with-dynamic-form/src/polyfills.ts",
+            "tsConfig": "projects/demo-with-dynamic-form/tsconfig.spec.json",
+            "karmaConfig": "projects/demo-with-dynamic-form/karma.conf.js",
+            "assets": [
+              "projects/demo-with-dynamic-form/src/favicon.ico",
+              "projects/demo-with-dynamic-form/src/assets"
+            ],
+            "styles": [
+              "projects/demo-with-dynamic-form/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/demo-with-dynamic-form/tsconfig.app.json",
+              "projects/demo-with-dynamic-form/tsconfig.spec.json",
+              "projects/demo-with-dynamic-form/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/demo-with-dynamic-form/e2e/protractor.conf.js",
+            "devServerTarget": "demo-with-dynamic-form:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo-with-dynamic-form:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "dynamic-reactive-form": {
+      "projectType": "library",
+      "root": "projects/dynamic-reactive-form",
+      "sourceRoot": "projects/dynamic-reactive-form/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/dynamic-reactive-form/tsconfig.lib.json",
+            "project": "projects/dynamic-reactive-form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/dynamic-reactive-form/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dynamic-reactive-form/src/test.ts",
+            "tsConfig": "projects/dynamic-reactive-form/tsconfig.spec.json",
+            "karmaConfig": "projects/dynamic-reactive-form/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dynamic-reactive-form/tsconfig.lib.json",
+              "projects/dynamic-reactive-form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "demo-without-dynamic-form"
+}
