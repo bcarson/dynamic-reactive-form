@@ -1,6 +1,10 @@
-<h2>Welcome to the Demo Without the Dynamic Form! 🥳</h2>
+<div class="content">
+  <h2>Welcome to the Demo Without the Dynamic Form  ! 🥳</h2>
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link routerLink="/newForm" routerLinkActive="active">New Form</a><br />
+    <a mat-tab-link routerLink="/editForm" routerLinkActive="active">Edit Form</a>
 
-    <a routerLink="/newForm">New Form</a><br />
-    <a routerLink="/editForm">Edit Form</a>
+  </nav>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

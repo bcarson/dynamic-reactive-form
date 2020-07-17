@@ -1,28 +1,96 @@
-<p>
-  <mat-form-field>
-    <input matInput placeholder="Name">
-    <mat-icon matSuffix>face</mat-icon>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field>
-    <input matInput placeholder="Age">
-    <mat-icon matSuffix>today</mat-icon>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field>
-      <input matInput placeholder="Email">
-      <mat-icon matSuffix>email</mat-icon>
-    </mat-form-field>
-</p>
-<p>
-  <mat-form-field>
-    <mat-select>
-      <mat-option *ngFor="let food of foods" [value]="food.value">
-        {{food.viewValue}}
-      </mat-option>
-    </mat-select>
-    <mat-label>Favorite Food</mat-label>
-  </mat-form-field>
-</p>
+
+<mat-grid-list cols="2">
+
+  <!-- Left Column -->
+  <mat-grid-tile>
+    <form [formGroup]="formLeft">
+      <!-- First Name -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" formControlName="firstName">
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Last Name -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" formControlName="lastName">
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Favorite Food -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Food</mat-label>
+          <mat-select matInput formControlNam="faveFood">
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Favorite Color -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Color</mat-label>
+          <mat-select matInput formControlName="faveColor">
+            <mat-option *ngFor="let color of colors" [value]="color">
+              {{color}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+    </form>
+  </mat-grid-tile>
+
+  <!-- Right Column -->
+  <mat-grid-tile>
+    <form [formGroup]="formRight">
+
+        <!-- Phone Number -->
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="text" formControlName="phone">
+          </mat-form-field>
+        </mat-list-item>
+
+        <!-- Email Address -->
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Email Address</mat-label>
+            <input matInput type="text" formControlName="email">
+          </mat-form-field>
+        </mat-list-item>
+
+      <!-- Favorite Story -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Season</mat-label>
+          <mat-select matInput>
+            <mat-option *ngFor="let season of seasons" [value]="season">
+              {{season}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Favorite Music -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Music</mat-label>
+          <mat-select matInput formControlName="faveMusic">
+            <mat-option *ngFor="let music of musics" [value]="music">
+              {{music}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+    </form>
+  </mat-grid-tile>
+</mat-grid-list>
+
+

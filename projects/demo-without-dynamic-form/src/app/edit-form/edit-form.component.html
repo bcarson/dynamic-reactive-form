@@ -1,1 +1,96 @@
-<p>edit-form works!</p>
+
+<mat-grid-list cols="2">
+
+  <!-- Left Column -->
+  <mat-grid-tile>
+    <form [formGroup]="formLeft">
+      <!-- First Name -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" formControlName="firstName">
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Last Name -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" formControlName="lastName">
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Favorite Food -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Food</mat-label>
+          <mat-select matInput formControlName="faveFood">
+            <mat-option *ngFor="let food of foods, let i = index" [value]="foods[i]">
+              {{food}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Favorite Color -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Color</mat-label>
+          <mat-select matInput formControlName="faveColor">
+            <mat-option *ngFor="let color of colors, let i = index" [value]="colors[i]">
+              {{color}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+    </form>
+  </mat-grid-tile>
+
+  <!-- Right Column -->
+  <mat-grid-tile>
+    <form [formGroup]="formRight">
+
+        <!-- Phone Number -->
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="text" formControlName="phone">
+          </mat-form-field>
+        </mat-list-item>
+
+        <!-- Email Address -->
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Email Address</mat-label>
+            <input matInput type="text" formControlName="email">
+          </mat-form-field>
+        </mat-list-item>
+
+      <!-- Favorite Story -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Season</mat-label>
+          <mat-select matInput formControlName="faveSeason">
+            <mat-option *ngFor="let season of seasons, let i = index" [value]="seasons[i]">
+              {{season}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
+      <!-- Favorite Music -->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Favorite Music</mat-label>
+          <mat-select matInput formControlName="faveMusic">
+            <mat-option *ngFor="let music of musics, let i = index" [value]="musics[i]">
+              {{music}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+    </form>
+  </mat-grid-tile>
+</mat-grid-list>
+
+

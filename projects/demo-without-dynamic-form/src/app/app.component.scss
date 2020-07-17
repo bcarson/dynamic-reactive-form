@@ -1,0 +1,24 @@
+body {
+  background-color: gray;
+}
+
+.content {
+  width: 50%;
+  padding: 20px;
+  font-family: sans-serif;
+  display: block;
+  background-color: white;
+  margin: 20px auto;
+
+  nav {
+    display: flex;
+
+    a {
+      flex: 1;
+
+    &.active {
+        border-bottom: 1px solid blue;
+      }
+    }
+  }
+}
