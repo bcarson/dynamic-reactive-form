@@ -1,4 +1,4 @@
-import { Field, FieldType } from '@dynamic-form';
+import { Field, FieldType, KeyValuePair } from '@dynamic-form';
 
 export const leftForm: Field[] = [
       {
@@ -20,9 +20,9 @@ export const leftForm: Field[] = [
         options: ['Red', 'Blue', 'Yellow']
       }
     ];
-export const  rightForm = [
+export const rightForm: Field[] = [
       {
-        name: 'phoneNumber',
+        name: 'phone',
         type: FieldType.TEXTFIELD
       },
       {
@@ -40,3 +40,17 @@ export const  rightForm = [
         options: ['Classic', 'Country', 'Folk', 'Rap', 'Rock']
       }
     ];
+
+export const prefillDataLeft: KeyValuePair[] = [
+  { key: 'firstName', value: 'Mickey' },
+  { key: 'lastName', value: 'Mouse' },
+  { key: 'favoriteFood', value: 'Pizza' },
+  { key: 'favoriteColor', value: 'Blue' }
+];
+
+export const prefillDataRight: KeyValuePair[] = [
+  { key: 'phone', value: '123-456-1212' },
+  { key: 'email', value: 'mickey@disney.com' },
+  { key: 'favoriteSeason', value: 'Summer' },
+  { key: 'favoriteMusic', value: 'Rock' }
+];

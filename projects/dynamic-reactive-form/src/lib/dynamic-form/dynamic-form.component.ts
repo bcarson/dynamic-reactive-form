@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { KeyValuePair } from '../dynamic-reactive-form.model';
+import { Field, FieldType, KeyValuePair } from '@dynamic-form';
 
 @Component({
   selector: 'lib-dynamic-form',
@@ -12,9 +12,9 @@ export class DynamicFormComponent implements OnInit {
   /**
    * Initialize Inputs passed in from parent component
    */
-  @Input() fieldset; // Required
-  @Input() errors; // Optional
-  @Input() prefillData; // Optional (default values)
+  @Input() fieldset: Field[]; // Required
+  @Input() errors: KeyValuePair[]; // Optional
+  @Input() prefillData: KeyValuePair[]; // Optional (default values)
   @Input() readOnly = false; // Optional
 
   /**
@@ -122,8 +122,11 @@ export class DynamicFormComponent implements OnInit {
     /**
      * Check each field for a coordinating field in prefillData
      */
-    if (this.prefillData && this.prefillData[field.name] !== undefined) {
-      value = this.prefillData[field.name];
+    if (this.prefillData) {
+      const defaultValue = this.prefillData.filter((element, index) => element.key === field.name);
+      if (defaultValue.length) {
+        value = defaultValue[0].value;
+      }
     }
 
     /**

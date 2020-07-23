@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { DynamicReactiveFormModule } from '@dynamic-form';
 import { EditFormRoutingModule } from './edit-form-routing.module';
 import { EditFormComponent } from './edit-form.component';
 
@@ -9,7 +10,9 @@ import { EditFormComponent } from './edit-form.component';
   declarations: [EditFormComponent],
   imports: [
     CommonModule,
-    EditFormRoutingModule
+    EditFormRoutingModule,
+    MatGridListModule,
+    DynamicReactiveFormModule
   ]
 })
 export class EditFormModule { }
