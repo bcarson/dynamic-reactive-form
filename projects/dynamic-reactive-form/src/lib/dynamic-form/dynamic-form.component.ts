@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 import { KeyValuePair } from '../dynamic-reactive-form.model';
 
 @Component({
@@ -10,7 +11,6 @@ import { KeyValuePair } from '../dynamic-reactive-form.model';
 export class DynamicFormComponent implements OnInit {
   /**
    * Initialize Inputs passed in from parent component
-   * (See dynamic-reactive-form.model for examples)
    */
   @Input() fieldset; // Required
   @Input() errors; // Optional
@@ -30,10 +30,8 @@ export class DynamicFormComponent implements OnInit {
   public formReady = false;
 
   /**
-   * Allow optional section headers and slide toggles
-   * which will show/hide child fields below the toggle.
+   * Allow optional slide toggles to show/hide conditional (child) fields.
    */
-  public sections: string[];
   private togglesWithChildren: { section, name }[] = [];
   private falseTogglesWithChildren: { name, value }[] = [];
 
@@ -44,12 +42,6 @@ export class DynamicFormComponent implements OnInit {
      * Confirm a fieldset was passed in
      */
     if (this.fieldset) {
-
-      /**
-       * Populate optional section headers
-       */
-      this.sections = Object.keys(this.fieldset);
-
       /**
        * Initialize Reactive Form
        */
@@ -63,59 +55,43 @@ export class DynamicFormComponent implements OnInit {
   initializeForm(): void {
     this.form = this.formBuilder.group({});
 
-    /**
-     * Read the fieldset array and generate a form
-     * (See dynamic-reactive-form.model for examples)
-     */
-    Object.keys(this.fieldset).forEach(section => {
-      /**
-       * Create a Form Group for each section
-       */
-      const formSection = this.formBuilder.group({});
-
       /**
        * Iterate through fields for each section
        */
-      this.fieldset[section].forEach(field => {
-
-        /**
-         * Create each form field and add it to this section's Form Group
-         */
-        formSection.addControl(field.name, this.initializeFormControl(field));
-
-        /**
-         * Add Slide Toggle child fields if needed
-         */
-        if (field.children) {
-          field.children.forEach(child => {
-            formSection.addControl(child.name, this.initializeFormControl(child));
-            this.togglesWithChildren.push({ section, name: field.name });
-          });
-        }
-      });
+    this.fieldset.forEach(field => {
+      /**
+       * Create each form field and add it to this section's Form Group
+       */
+      this.form.addControl(field.name, this.initializeFormControl(field));
 
       /**
-       * Add each section to the main form
+       * Add Slide Toggle child fields if needed
        */
-      this.form.addControl(section, formSection);
-
-      /**
-       * This is for demo purposes and should be removed for production code
-       */
-      this.form.valueChanges.subscribe(data => {
-        console.log('Form changed! ', data, this.form.controls);
-      });
-
-      /**
-       * Populate the Slide Toggle child fields if needed
-       */
-      this.handleSlideToggleChildren();
-
-      /**
-       * That's it, we're ready to go! Turn on the Template! 🥳
-       */
-      this.formReady = true;
+      if (field.children) {
+        field.children.forEach(child => {
+          this.form.addControl(child.name, this.initializeFormControl(child));
+          this.togglesWithChildren.push({ section: field.name, name: child.name });
+        });
+      }
     });
+
+    /**
+     * This is for demo purposes and should be removed for production code
+     * debounceTime added to wait for the user to stop typing
+     */
+    this.form.valueChanges.pipe(debounceTime(100)).subscribe(data => {
+      console.log('Dynamic form changed: ', data, this.form.controls);
+    });
+
+    /**
+     * Populate the Slide Toggle child fields if needed
+     */
+    this.handleSlideToggleChildren();
+
+    /**
+     * That's it, we're ready to go! Turn on the Template! 🥳
+     */
+    this.formReady = true;
   }
 
   initializeFormControl(field): FormControl {
@@ -146,7 +122,7 @@ export class DynamicFormComponent implements OnInit {
     /**
      * Check each field for a coordinating field in prefillData
      */
-    if (this.prefillData[field.name] !== undefined) {
+    if (this.prefillData && this.prefillData[field.name] !== undefined) {
       value = this.prefillData[field.name];
     }
 

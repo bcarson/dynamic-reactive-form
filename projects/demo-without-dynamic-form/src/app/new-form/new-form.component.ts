@@ -28,7 +28,7 @@ export class NewFormComponent implements OnInit {
   ];
   colors = ['Red', 'Blue', 'Yellow'];
   seasons = ['Spring', 'Summer', 'Fall', 'Winter'];
-  musics = ['Classical', 'Country', 'Folk', 'Rap', 'Rock'];
+  musics = ['Classic', 'Country', 'Folk', 'Rap', 'Rock'];
 
   ngOnInit(): void {
     this.formLeft.valueChanges.subscribe(values => {

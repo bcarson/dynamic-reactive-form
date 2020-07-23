@@ -19,7 +19,8 @@
       "dynamic-reactive-form": [
         "dist/dynamic-reactive-form/dynamic-reactive-form",
         "dist/dynamic-reactive-form"
-      ]
+      ],
+      "@dynamic-form": ["projects/dynamic-reactive-form/src"]
     }
   }
 }

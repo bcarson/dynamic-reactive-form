@@ -1,0 +1,12 @@
+<ng-container *ngIf="formReady">
+  <form [formGroup]="form">
+      <ng-container *ngFor="let field of fieldset">
+        <lib-dynamic-field [field]="field"></lib-dynamic-field>
+        <!-- <div [ngxErrors]="field.name">
+          <div *ngFor="let error of errors" [ngxError]="error.name" [when]="error.rules" class="error">
+            {{ error.text }}
+          </div>
+        </div> -->
+      </ng-container>
+  </form>
+</ng-container>

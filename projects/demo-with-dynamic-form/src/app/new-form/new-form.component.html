@@ -1,1 +1,13 @@
-<p>new-form works!</p>
+<mat-grid-list cols="2">
+  <!-- Left Column -->
+  <mat-grid-tile>
+    <lib-dynamic-form [fieldset]="leftForm"></lib-dynamic-form>
+  </mat-grid-tile>
+
+  <!-- Right Column -->
+  <mat-grid-tile>
+    <lib-dynamic-form [fieldset]="rightForm"></lib-dynamic-form>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
