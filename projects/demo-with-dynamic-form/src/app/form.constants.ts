@@ -3,7 +3,7 @@ import { Field, FieldType, KeyValuePair } from '@dynamic-form';
 export const leftForm: Field[] = [
       {
         name: 'firstName',
-        type: FieldType.TEXTFIELD
+        type: FieldType.TEXTFIELD,
       },
       {
         name: 'lastName',
@@ -40,6 +40,32 @@ export const rightForm: Field[] = [
         options: ['Classic', 'Country', 'Folk', 'Rap', 'Rock']
       }
     ];
+
+export const toggleSet: Field[] = [
+  {
+    name: 'joinMailingList',
+    type: FieldType.SLIDETOGGLE,
+    defaultValue: true,
+    children: [
+      {
+        name: 'streetAddress',
+        type: FieldType.TEXTFIELD
+      },
+      {
+        name: 'city',
+        type: FieldType.TEXTFIELD
+      },
+      {
+        name: 'state',
+        type: FieldType.TEXTFIELD
+      },
+      {
+        name: 'zip',
+        type: FieldType.TEXTFIELD
+      }
+    ]
+  }
+];
 
 export const prefillDataLeft: KeyValuePair[] = [
   { key: 'firstName', value: 'Mickey' },

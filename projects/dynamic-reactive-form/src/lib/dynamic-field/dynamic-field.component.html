@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="field.type">
+<ng-container *ngIf="field.visible !== false" [ngSwitch]="field.type">
 
   <!-- CHECKBOX -->
   <div *ngSwitchCase="0" class="checkbox-view">
@@ -49,7 +49,7 @@
 
     <div matLine *ngIf="field.children" style="padding-top: 7px;">
         <ng-container *ngFor="let child of field.children">
-          <ad-field [field]="child" class="toggleChild"></ad-field>
+          <lib-dynamic-field [field]="child" class="toggleChild"></lib-dynamic-field>
         </ng-container>
     </div>
 </ng-container>

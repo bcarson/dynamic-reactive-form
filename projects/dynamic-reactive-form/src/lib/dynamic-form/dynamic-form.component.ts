@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
-import { Field, FieldType, KeyValuePair } from '@dynamic-form';
+import { Field, KeyValuePair } from '@dynamic-form';
 
 @Component({
   selector: 'lib-dynamic-form',
@@ -32,8 +31,7 @@ export class DynamicFormComponent implements OnInit {
   /**
    * Allow optional slide toggles to show/hide conditional (child) fields.
    */
-  private togglesWithChildren: { section, name }[] = [];
-  private falseTogglesWithChildren: { name, value }[] = [];
+  private togglesWithChildren: { name: string, value: boolean, children: Field[] }[] = [];
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -60,7 +58,7 @@ export class DynamicFormComponent implements OnInit {
        */
     this.fieldset.forEach(field => {
       /**
-       * Create each form field and add it to this section's Form Group
+       * Create each form field and add it to the Form Group
        */
       this.form.addControl(field.name, this.initializeFormControl(field));
 
@@ -70,8 +68,9 @@ export class DynamicFormComponent implements OnInit {
       if (field.children) {
         field.children.forEach(child => {
           this.form.addControl(child.name, this.initializeFormControl(child));
-          this.togglesWithChildren.push({ section: field.name, name: child.name });
         });
+        this.togglesWithChildren.push(
+          { name: field.name, value: field.defaultValue, children: field.children });
       }
     });
 
@@ -79,9 +78,9 @@ export class DynamicFormComponent implements OnInit {
      * This is for demo purposes and should be removed for production code
      * debounceTime added to wait for the user to stop typing
      */
-    this.form.valueChanges.pipe(debounceTime(100)).subscribe(data => {
-      console.log('Dynamic form changed: ', data, this.form.controls);
-    });
+    // this.form.valueChanges.pipe(debounceTime(100)).subscribe(data => {
+    //   console.log('Dynamic form changed: ', data, this.form.controls);
+    // });
 
     /**
      * Populate the Slide Toggle child fields if needed
@@ -114,8 +113,8 @@ export class DynamicFormComponent implements OnInit {
         value = true;
       }
 
-      if (!field.defaultValue) {
-        this.falseTogglesWithChildren.push({ name: field.name, value: false });
+      if (field.defaultValue === false) {
+        this.hideChildren(field);
       }
     }
 
@@ -130,12 +129,11 @@ export class DynamicFormComponent implements OnInit {
     }
 
     /**
-     * Handle validation (or initialize null) and disabled fields
+     * Handle validation (or initialize null), disabled fields, and visibility
      * (passing in readOnly = true will disabled ALL fields)
      */
     const validation = field.validation ? field.validation : [];
     const isDisabled = field.disabled || this.readOnly ? true : false;
-
     /**
      * That's it, we're done! Return our new Form Control up to the form.
      */
@@ -143,33 +141,38 @@ export class DynamicFormComponent implements OnInit {
   }
 
   handleSlideToggleChildren(): void {
-    this.falseTogglesWithChildren.forEach(parent => {
-      this.toggleChildren(parent.name, parent.value);
-    });
-
-    this.togglesWithChildren.forEach(toggle => {
-      /**
-       * Set up valueChanges subscription for each Slide Toggle field w/ children
-       */
-      // tslint:disable-next-line: no-string-literal
-      this.form.controls[toggle.section]['controls'][toggle.name].valueChanges.subscribe(toggleValue => {
-        this.toggleChildren(toggle.name, toggleValue);
+    /**
+     * Set up valueChanges subscription for each Slide Toggle field w/ children
+     */
+    this.togglesWithChildren.forEach(parent => {
+      this.form.controls[parent.name].valueChanges.subscribe(value => {
+        this.toggleChildren(parent.name, value);
       });
     });
   }
 
   toggleChildren(name, toggleValue): void {
-    Object.keys(this.fieldset).forEach(section => {
-      const specifiedField = this.fieldset[section].find(field => field.name === name);
-      if (specifiedField) {
-        specifiedField.children.forEach(child => {
-          if (toggleValue) {
-            this.form.controls[section].get(child.name).enable();
-          } else {
-            this.form.controls[section].get(child.name).disable();
-          }
-        });
-      }
+    const parentIndex = this.fieldset.findIndex(field => field.name === name);
+    if (toggleValue) {
+      this.showChildren(parentIndex);
+    } else {
+      this.hideChildren(parentIndex);
+    }
+  }
+
+  hideChildren(parentIndex): void {
+    const parent = { ...this.fieldset[parentIndex] };
+    parent.children.forEach((child, index) => {
+      this.form.get(child.name).disable();
+      parent.children[index].visible = false;
+    });
+  }
+
+  showChildren(parentIndex): void {
+    const parent = { ...this.fieldset[parentIndex] };
+    parent.children.forEach((child, index) => {
+      this.form.get(child.name).enable();
+      parent.children[index].visible = true;
     });
   }
 
