@@ -1,12 +1,12 @@
 <mat-grid-list cols="2">
   <!-- Left Column -->
   <mat-grid-tile>
-    <lib-dynamic-form [fieldset]="leftForm" [prefillData]="prefillLeft"></lib-dynamic-form>
+    <lib-dynamic-form [fieldset]="leftForm" [prefillData]="prefillLeft" [errors]="errors"></lib-dynamic-form>
   </mat-grid-tile>
 
   <!-- Right Column -->
   <mat-grid-tile>
-    <lib-dynamic-form [fieldset]="rightForm" [prefillData]="prefillRight"></lib-dynamic-form>
+    <lib-dynamic-form [fieldset]="rightForm" [prefillData]="prefillRight" [errors]="errors"></lib-dynamic-form>
   </mat-grid-tile>
 </mat-grid-list>
 

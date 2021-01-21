@@ -29,3 +29,9 @@ export interface KeyValuePair {
   key: string;
   value: any;
 }
+
+export interface Error {
+  name: string;
+  text: string;
+  rules: Validators[];
+}

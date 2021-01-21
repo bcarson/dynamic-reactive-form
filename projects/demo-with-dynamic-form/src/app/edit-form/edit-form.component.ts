@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { leftForm, rightForm, prefillDataLeft, prefillDataRight } from '../form.constants';
+import { leftForm, rightForm, prefillDataLeft, prefillDataRight, errors } from '../form.constants';
 
 @Component({
   selector: 'app-edit-form',
@@ -11,6 +11,7 @@ export class EditFormComponent implements OnInit {
   rightForm = rightForm;
   prefillLeft = prefillDataLeft;
   prefillRight = prefillDataRight;
+  errors = errors;
   constructor() { }
 
   ngOnInit(): void {

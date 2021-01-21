@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { NgxErrorsModule } from '@ngspot/ngx-errors';
 import { DynamicFormMaterialModule } from './dynamic-form-material.module';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicFieldComponent } from './dynamic-field/dynamic-field.component';
@@ -11,7 +11,7 @@ import { SentenceCasePipe } from './sentence-case.pipe';
   declarations: [DynamicFieldComponent, DynamicFormComponent, SentenceCasePipe],
   imports: [
     CommonModule,
-    // NgxErrorsModule,
+    NgxErrorsModule,
     ReactiveFormsModule,
     DynamicFormMaterialModule,
   ],

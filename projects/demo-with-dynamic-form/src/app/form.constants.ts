@@ -1,9 +1,11 @@
 import { Field, FieldType, KeyValuePair } from '@dynamic-form';
+import { Validators } from '@angular/forms';
 
 export const leftForm: Field[] = [
       {
         name: 'firstName',
         type: FieldType.TEXTFIELD,
+        validation: [ Validators.required, Validators.maxLength(25) ]
       },
       {
         name: 'lastName',
@@ -80,3 +82,16 @@ export const prefillDataRight: KeyValuePair[] = [
   { key: 'favoriteSeason', value: 'Summer' },
   { key: 'favoriteMusic', value: 'Rock' }
 ];
+
+export const errors = [
+  {
+      name: 'required',
+      text: 'This field is required.',
+      rules: ['dirty']
+  },
+  {
+      name: 'maxlength',
+      text: 'This field cannot exceed 25 characters.',
+      rules: ['dirty']
+  }
+]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { leftForm, rightForm, toggleSet } from '../form.constants';
+import { leftForm, rightForm, toggleSet, errors } from '../form.constants';
 
 @Component({
   selector: 'app-new-form',
@@ -10,6 +10,7 @@ export class NewFormComponent implements OnInit {
   leftForm = leftForm;
   rightForm = rightForm;
   toggleForm = toggleSet;
+  errors = errors;
   constructor() { }
 
   ngOnInit(): void {

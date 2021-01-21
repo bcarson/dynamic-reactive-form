@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Field, KeyValuePair } from '@dynamic-form';
+import { Field, KeyValuePair, Error } from '@dynamic-form';
 
 @Component({
   selector: 'lib-dynamic-form',
@@ -12,7 +12,7 @@ export class DynamicFormComponent implements OnInit {
    * Initialize Inputs passed in from parent component
    */
   @Input() fieldset: Field[]; // Required
-  @Input() errors: KeyValuePair[]; // Optional
+  @Input() errors: Error[]; // Optional
   @Input() prefillData: KeyValuePair[]; // Optional (default values)
   @Input() readOnly = false; // Optional
 
@@ -192,5 +192,4 @@ export class DynamicFormComponent implements OnInit {
     }
     return formValues;
   }
-
 }

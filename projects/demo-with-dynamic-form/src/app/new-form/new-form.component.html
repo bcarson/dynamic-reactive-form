@@ -1,16 +1,16 @@
 <mat-grid-list cols="2">
   <!-- Left Column -->
   <mat-grid-tile>
-    <lib-dynamic-form [fieldset]="leftForm"></lib-dynamic-form>
+    <lib-dynamic-form [fieldset]="leftForm" [errors]="errors"></lib-dynamic-form>
   </mat-grid-tile>
 
   <!-- Right Column -->
   <mat-grid-tile>
-    <lib-dynamic-form [fieldset]="rightForm"></lib-dynamic-form>
+    <lib-dynamic-form [fieldset]="rightForm" [errors]="errors"></lib-dynamic-form>
   </mat-grid-tile>
 
   <mat-grid-tile>
-    <lib-dynamic-form [fieldset]="toggleForm"></lib-dynamic-form>
+    <lib-dynamic-form [fieldset]="toggleForm" [errors]="errors"></lib-dynamic-form>
   </mat-grid-tile>
 </mat-grid-list>
 
