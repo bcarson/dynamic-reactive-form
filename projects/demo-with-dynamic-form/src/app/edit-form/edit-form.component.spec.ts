@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditFormComponent } from './edit-form.component';
+import { AppMaterialModule } from '../../../../demo-without-dynamic-form/src/app/app-material.module';
 
 describe('EditFormComponent', () => {
   let component: EditFormComponent;
@@ -8,7 +9,10 @@ describe('EditFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditFormComponent ]
+      declarations: [
+        AppMaterialModule,
+        EditFormComponent
+      ]
     })
     .compileComponents();
   }));

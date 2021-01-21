@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewFormComponent } from './new-form.component';
+import { AppMaterialModule } from '../../../../demo-without-dynamic-form/src/app/app-material.module';
 
 describe('NewFormComponent', () => {
   let component: NewFormComponent;
@@ -8,7 +9,10 @@ describe('NewFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewFormComponent ]
+      declarations: [
+        AppMaterialModule,
+        NewFormComponent
+      ]
     })
     .compileComponents();
   }));
