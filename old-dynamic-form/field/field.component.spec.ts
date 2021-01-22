@@ -21,6 +21,7 @@ describe('FieldComponent', () => {
 
         TestBed.configureTestingModule({
             imports: [
+                AppMaterialModule,
                 ReactiveFormsModule,
                 AppMaterialModule
             ],

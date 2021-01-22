@@ -30,6 +30,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('demo-without-dynamic-form app is running!');
+    expect(compiled.querySelector('h2').textContent).toContain('Welcome to the Demo Without the Dynamic Form ! 🥳');
   });
 });
