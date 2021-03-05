@@ -94,4 +94,4 @@ export const errors = [
       text: 'This field cannot exceed 25 characters.',
       rules: ['dirty']
   }
-]
+];
