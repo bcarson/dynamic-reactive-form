@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'editForm', loadChildren: () => import('./edit-form/edit-form.module').then(m => m.EditFormModule) }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
