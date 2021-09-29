@@ -8,8 +8,8 @@ import { Field, FieldType } from '../dynamic-reactive-form.model';
   styleUrls: ['./dynamic-field.component.scss']
 })
 export class DynamicFieldComponent implements OnInit {
-  @Input() field: Field;
-  public control: FormControl;
+  @Input() field!: Field;
+  public control!: FormControl;
   public FieldType = FieldType;
   constructor(private formGroupDir: FormGroupDirective) { }
 

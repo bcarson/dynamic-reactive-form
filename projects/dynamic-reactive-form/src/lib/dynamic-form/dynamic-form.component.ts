@@ -11,9 +11,9 @@ export class DynamicFormComponent implements OnInit {
   /**
    * Initialize Inputs passed in from parent component
    */
-  @Input() fieldset: Field[]; // Required
-  @Input() errors: Error[]; // Optional
-  @Input() prefillData: KeyValuePair[]; // Optional (default values)
+  @Input() fieldset!: Field[]; // Required
+  @Input() errors: Error[] = []; // Optional
+  @Input() prefillData: KeyValuePair[] = []; // Optional (default values)
   @Input() readOnly = false; // Optional
 
   /**
@@ -25,7 +25,7 @@ export class DynamicFormComponent implements OnInit {
    * Initialize empty Reactive Form Group, set marker to false
    * until Form Controls have been added and the form is ready.
    */
-  public form: FormGroup;
+  public form!: FormGroup;
   public formReady = false;
 
   /**
@@ -93,7 +93,7 @@ export class DynamicFormComponent implements OnInit {
     this.formReady = true;
   }
 
-  initializeFormControl(field): FormControl {
+  initializeFormControl(field: Field): FormControl {
     let value;
 
     /**
@@ -114,7 +114,8 @@ export class DynamicFormComponent implements OnInit {
       }
 
       if (field.defaultValue === false) {
-        this.hideChildren(field);
+        const parentIndex = this.fieldset.findIndex(current => current.name === field.name);
+        this.hideChildren(parentIndex);
       }
     }
 
@@ -151,7 +152,7 @@ export class DynamicFormComponent implements OnInit {
     });
   }
 
-  toggleChildren(name, toggleValue): void {
+  toggleChildren(name: string, toggleValue: boolean): void {
     const parentIndex = this.fieldset.findIndex(field => field.name === name);
     if (toggleValue) {
       this.showChildren(parentIndex);
@@ -160,36 +161,49 @@ export class DynamicFormComponent implements OnInit {
     }
   }
 
-  hideChildren(parentIndex): void {
+  hideChildren(parentIndex: number): void {
     const parent = { ...this.fieldset[parentIndex] };
-    parent.children.forEach((child, index) => {
-      this.form.get(child.name).disable();
+    parent?.children?.forEach((child, index) => {
+      this.form?.get(child.name)?.disable();
+      if (parent?.children?.[index]) {
       parent.children[index].visible = false;
+      }
     });
   }
 
-  showChildren(parentIndex): void {
+  showChildren(parentIndex: number): void {
     const parent = { ...this.fieldset[parentIndex] };
-    parent.children.forEach((child, index) => {
-      this.form.get(child.name).enable();
+    parent?.children?.forEach((child, index) => {
+      this.form?.get(child.name)?.enable();
+      if (parent?.children?.[index]) {
       parent.children[index].visible = true;
+      }
     });
   }
 
-  extractFormValues(form): KeyValuePair[] {
+  extractFormValues(form: FormGroup): KeyValuePair[] {
     /**
      * Extract Form Field Names and Values into an array of key value pairs
+     * will only return valid values
      */
-    const formValues = [];
-    if (form.controls) {
+     const formValues: KeyValuePair[] = [];
+     if (form.controls) {
       Object.keys(form.controls).forEach(key => {
-        if (form.controls[key].controls) {
-          formValues.push({ key, value: this.extractFormValues(form.controls[key])});
+         const isForm = typeof form.controls[key] === ('FormGroup' as string);
+         if (isForm && (form.controls[key] as FormGroup).controls) {
+           const formGroup = form.controls[key] as FormGroup;
+           if (formGroup.valid) {
+             const value: KeyValuePair = { key, value: this.extractFormValues(formGroup) };
+             formValues.push(value);
+           }
         } else {
-          formValues.push({ key, value: form.get(key).value });
+           const value: KeyValuePair = { key, value: form.get(key)?.value };
+           if (form.get(key)?.valid) {
+             formValues.push(value);
+           }
         }
       });
     }
-    return formValues;
+     return formValues;
   }
 }
