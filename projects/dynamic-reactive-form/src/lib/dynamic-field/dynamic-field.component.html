@@ -1,14 +1,14 @@
 <ng-container *ngIf="field.visible !== false" [ngSwitch]="field.type">
 
   <!-- CHECKBOX -->
-  <div *ngSwitchCase="0" class="checkbox-view">
+  <div *ngSwitchCase="FieldType.CHECKBOX" class="checkbox-view">
     <mat-checkbox [formControl]="control" color='primary'>
       {{ field.name | sentenceCase }}
     </mat-checkbox>
   </div>
 
   <!-- DATEPICKER -->
-  <mat-list-item *ngSwitchCase="1">
+  <mat-list-item *ngSwitchCase="FieldType.DATEPICKER">
     <mat-form-field>
         <input matInput [matDatepicker]="picker" [placeholder]="field.name | sentenceCase" [formControl]="control">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -17,14 +17,14 @@
   </mat-list-item>
 
   <!-- SINGLE RADIO -->
-  <mat-radio-group *ngSwitchCase="2" [formControl]="control">
+  <mat-radio-group *ngSwitchCase="FieldType.RADIO" [formControl]="control">
     <mat-radio-button *ngFor="let option of field.options" [value]="option" color='primary'>
         {{ option | sentenceCase }}
     </mat-radio-button>
   </mat-radio-group>
 
   <!-- SELECT DROPDOWN -->
-  <mat-list-item *ngSwitchCase="3">
+  <mat-list-item *ngSwitchCase="FieldType.SELECTDROPDOWN">
   <mat-form-field>
     <mat-select [placeholder]="field.name | sentenceCase" [formControl]="control">
       <mat-option *ngFor="let option of field.options" [value]="option">{{ option }}</mat-option>
@@ -33,14 +33,14 @@
   </mat-list-item>
 
   <!-- SELECT LIST -->
-  <mat-selection-list *ngSwitchCase="4" [formControl]="control" color='primary'>
+  <mat-selection-list *ngSwitchCase="FieldType.SELECTLIST" [formControl]="control" color='primary'>
       <mat-list-option mySelectionList *ngFor="let option of field.options" [value]="option" color='primary' checkboxPosition="before">
         {{ option }}
       </mat-list-option>
   </mat-selection-list>
 
   <!-- SLIDE TOGGLE -->
-<ng-container *ngSwitchCase="5">
+<ng-container *ngSwitchCase="FieldType.SLIDETOGGLE">
     <!-- <mat-list-item > -->
         <mat-slide-toggle matLine [formControl]="control" color='primary' class="checkbox-view">
           {{ field.name | sentenceCase }}
@@ -55,26 +55,26 @@
 </ng-container>
 
   <!-- TEXTAREA -->
-  <mat-list-item *ngSwitchCase="6">
+  <mat-list-item *ngSwitchCase="FieldType.TEXTAREA">
     <mat-form-field>
       <textarea matInput type="text" [formControl]="control" [placeholder]="field.name | sentenceCase"></textarea>
     </mat-form-field>
   </mat-list-item>
 
 <!-- TEXTFIELD -->
-<mat-list-item *ngSwitchCase="7">
+<mat-list-item *ngSwitchCase="FieldType.TEXTFIELD">
   <mat-form-field>
     <input matInput type="text" [formControl]="control" [placeholder]="field.name | sentenceCase">
   </mat-form-field>
 </mat-list-item>
 
 <!-- SUBHEADER -->
-<div *ngSwitchCase="8" class="subheader">
+<div *ngSwitchCase="FieldType.SUBHEADER" class="subheader">
     {{ field.name }}
 </div>
 
 <!-- DIVIDER -->
-<ng-container *ngSwitchCase="9">
+<ng-container *ngSwitchCase="FieldType.DIVIDER">
     <hr/>
 </ng-container>
 

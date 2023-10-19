@@ -4,6 +4,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { DynamicReactiveFormModule } from '@dynamic-form';
 import { NewFormRoutingModule } from './new-form-routing.module';
 import { NewFormComponent } from './new-form.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { NewFormComponent } from './new-form.component';
     CommonModule,
     DynamicReactiveFormModule,
     NewFormRoutingModule,
-    MatGridListModule
+    MatGridListModule,
+    MatNativeDateModule
   ]
 })
 export class NewFormModule { }

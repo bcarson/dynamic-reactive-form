@@ -64,6 +64,10 @@ export const toggleSet: Field[] = [
       {
         name: 'zip',
         type: FieldType.TEXTFIELD
+      },
+      {
+        name: 'date',
+        type: FieldType.DATEPICKER
       }
     ]
   }
