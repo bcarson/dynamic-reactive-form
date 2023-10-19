@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-form',
@@ -7,18 +7,18 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./edit-form.component.scss']
 })
 export class EditFormComponent implements OnInit {
-  formLeft = new FormGroup({
-    firstName: new FormControl('Mickey'),
-    lastName: new FormControl('Mouse'),
-    faveFood: new FormControl('Pizza'),
-    faveColor: new FormControl('Blue')
+  formLeft = new UntypedFormGroup({
+    firstName: new UntypedFormControl('Mickey'),
+    lastName: new UntypedFormControl('Mouse'),
+    faveFood: new UntypedFormControl('Pizza'),
+    faveColor: new UntypedFormControl('Blue')
   });
 
-  formRight = new FormGroup({
-    phone: new FormControl('123-456-1212'),
-    email: new FormControl('mickey@disney.com'),
-    faveSeason: new FormControl('Summer'),
-    faveMusic: new FormControl('Rock')
+  formRight = new UntypedFormGroup({
+    phone: new UntypedFormControl('123-456-1212'),
+    email: new UntypedFormControl('mickey@disney.com'),
+    faveSeason: new UntypedFormControl('Summer'),
+    faveMusic: new UntypedFormControl('Rock')
   });
 
   foods = ['Pizza', 'Ice Cream', 'Tacos'];

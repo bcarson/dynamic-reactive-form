@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { Field, KeyValuePair, Error } from '@dynamic-form';
 
 @Component({
@@ -25,7 +25,7 @@ export class DynamicFormComponent implements OnInit {
    * Initialize empty Reactive Form Group, set marker to false
    * until Form Controls have been added and the form is ready.
    */
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public formReady = false;
 
   /**
@@ -33,7 +33,7 @@ export class DynamicFormComponent implements OnInit {
    */
   private togglesWithChildren: { name: string, value: boolean, children: Field[] }[] = [];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     /**
@@ -93,7 +93,7 @@ export class DynamicFormComponent implements OnInit {
     this.formReady = true;
   }
 
-  initializeFormControl(field): FormControl {
+  initializeFormControl(field): UntypedFormControl {
     let value;
 
     /**
