@@ -16,7 +16,7 @@
     "@angular/compiler": "^16.2.10",
     "@angular/core": "^16.2.10",
     "@angular/forms": "^16.2.10",
-    "@angular/material": "^15.2.9",
+    "@angular/material": "^16.2.9",
     "@angular/platform-browser": "^16.2.10",
     "@angular/platform-browser-dynamic": "^16.2.10",
     "@angular/router": "^16.2.10",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.6",
-    "@angular/cdk": "^15.2.9",
+    "@angular/cdk": "^16.2.9",
     "@angular/cli": "^16.2.6",
     "@angular/compiler-cli": "^16.2.10",
     "@types/jasmine": "~3.6.0",
