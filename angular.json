@@ -22,7 +22,6 @@
             "main": "projects/demo-without-dynamic-form/src/main.ts",
             "polyfills": "projects/demo-without-dynamic-form/src/polyfills.ts",
             "tsConfig": "projects/demo-without-dynamic-form/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/demo-without-dynamic-form/src/favicon.ico",
               "projects/demo-without-dynamic-form/src/assets"
@@ -30,7 +29,13 @@
             "styles": [
               "projects/demo-without-dynamic-form/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -60,7 +65,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -142,7 +148,6 @@
             "main": "projects/demo-with-dynamic-form/src/main.ts",
             "polyfills": "projects/demo-with-dynamic-form/src/polyfills.ts",
             "tsConfig": "projects/demo-with-dynamic-form/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/demo-with-dynamic-form/src/favicon.ico",
               "projects/demo-with-dynamic-form/src/assets"
@@ -150,7 +155,13 @@
             "styles": [
               "projects/demo-with-dynamic-form/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -180,7 +191,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
