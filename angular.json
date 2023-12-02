@@ -71,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo-without-dynamic-form:build"
+            "buildTarget": "demo-without-dynamic-form:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo-without-dynamic-form:build:production"
+              "buildTarget": "demo-without-dynamic-form:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo-without-dynamic-form:build"
+            "buildTarget": "demo-without-dynamic-form:build"
           }
         },
         "test": {
@@ -184,18 +184,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo-with-dynamic-form:build"
+            "buildTarget": "demo-with-dynamic-form:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo-with-dynamic-form:build:production"
+              "buildTarget": "demo-with-dynamic-form:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo-with-dynamic-form:build"
+            "buildTarget": "demo-with-dynamic-form:build"
           }
         },
         "test": {
