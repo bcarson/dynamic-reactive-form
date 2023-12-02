@@ -9,7 +9,7 @@
 
 # dependencies
 /node_modules
-/projects/dynamic-reactive-form-v2/node_modules
+/projects/dynamic-reactive-form/node_modules
 
 # profiling files
 chrome-profiler-events*.json

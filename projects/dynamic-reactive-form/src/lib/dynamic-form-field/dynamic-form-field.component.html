@@ -1,0 +1,71 @@
+@if(!field.visible){
+    @switch(field.type) {
+        @case(FieldType.CHECKBOX) {
+            <mat-checkbox [formControl]="control" color='primary'>
+                {{ field.name | sentenceCase }}
+            </mat-checkbox>
+        }
+        @case(FieldType.DATEPICKER) {
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" [placeholder]="field.name | sentenceCase" [formControl]="control">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        }
+        @case(FieldType.RADIO) {
+            <mat-radio-group [formControl]="control">
+                <mat-radio-button *ngFor="let option of field.options" [value]="option" color='primary'>
+                    {{ option | sentenceCase }}
+                </mat-radio-button>
+            </mat-radio-group>
+        }
+        @case(FieldType.SELECTDROPDOWN) {
+            <mat-form-field>
+                <mat-select [placeholder]="field.name | sentenceCase" [formControl]="control">
+                  <mat-option *ngFor="let option of field.options" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        }
+        @case(FieldType.SELECTLIST) {
+            <mat-selection-list [formControl]="control" color='primary'>
+                <mat-list-option mySelectionList *ngFor="let option of field.options" [value]="option" color='primary' checkboxPosition="before">
+                  {{ option }}
+                </mat-list-option>
+            </mat-selection-list>
+        }
+        @case(FieldType.SLIDETOGGLE) {
+            <mat-slide-toggle matLine [formControl]="control" color='primary' class="checkbox-view">
+                {{ field.name | sentenceCase }}
+            </mat-slide-toggle>
+
+            <div matLine *ngIf="field.children" style="padding-top: 7px;">
+                <ng-container *ngFor="let child of field.children">
+                    <lib-dynamic-field [field]="child" class="toggleChild"></lib-dynamic-field>
+                </ng-container>
+            </div>
+        }
+        @case(FieldType.TEXTAREA) {
+            <mat-form-field>
+                <textarea matInput type="text" [formControl]="control" [placeholder]="field.name | sentenceCase"></textarea>
+            </mat-form-field>
+        }
+        @case(FieldType.TEXTFIELD) {
+            <mat-form-field>
+                <input matInput type="text" [formControl]="control" [placeholder]="field.name | sentenceCase">
+            </mat-form-field>
+        }
+        @case(FieldType.SUBHEADER) {
+            <p class="subheader">
+                {{ field.name }}
+            </p>
+        }
+        @case(FieldType.DIVIDER) {
+            <hr/>
+        }
+        @default() {
+            <div>no field found</div>
+        }
+        
+    }
+}
+  

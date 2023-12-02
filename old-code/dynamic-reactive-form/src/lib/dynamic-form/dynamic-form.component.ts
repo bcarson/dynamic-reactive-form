@@ -1,18 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { Field, KeyValuePair } from '../models/dynamic-reactive-form.model';
-import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { NgxErrorsModule } from '@ngspot/ngx-errors';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { Field, KeyValuePair, Error } from '@dynamic-form';
+
 @Component({
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgxErrorsModule],
   selector: 'lib-dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.css']
+  styleUrls: ['./dynamic-form.component.scss']
 })
 export class DynamicFormComponent implements OnInit {
-
-  protected readonly formBuilder = inject(UntypedFormBuilder);
-
   /**
    * Initialize Inputs passed in from parent component
    */
@@ -38,6 +33,8 @@ export class DynamicFormComponent implements OnInit {
    */
   private togglesWithChildren: { name: string, value: boolean, children: Field[] }[] = [];
 
+  constructor(private formBuilder: UntypedFormBuilder) { }
+
   ngOnInit(): void {
     /**
      * Confirm a fieldset was passed in
@@ -56,9 +53,9 @@ export class DynamicFormComponent implements OnInit {
   initializeForm(): void {
     this.form = this.formBuilder.group({});
 
-    /**
-     * Iterate through fields for each section
-     */
+      /**
+       * Iterate through fields for each section
+       */
     this.fieldset.forEach(field => {
       /**
        * Create each form field and add it to the Form Group
@@ -163,47 +160,19 @@ export class DynamicFormComponent implements OnInit {
     }
   }
 
-  hideChildren(parentIndex: number): void {
+  hideChildren(parentIndex): void {
     const parent = { ...this.fieldset[parentIndex] };
-
-    if (!parent.children) {
-      return;
-    }
-
     parent.children.forEach((child, index) => {
-
-      const formField = this.form.get(child.name);
-
-      if (formField) {
-        formField.disable();
-      }
-
-      const childField = parent.children![index];
-      if (childField) {
-        childField.visible = false;
-      }
+      this.form.get(child.name).disable();
+      parent.children[index].visible = false;
     });
   }
 
   showChildren(parentIndex): void {
     const parent = { ...this.fieldset[parentIndex] };
-
-    if (!parent.children) {
-      return;
-    }
-
     parent.children.forEach((child, index) => {
-
-      const formField = this.form.get(child.name);
-
-      if (formField) {
-        formField.enable();
-      }
-
-      const childField = parent.children![index];
-      if (childField) {
-        childField.visible = true;
-      }
+      this.form.get(child.name).enable();
+      parent.children[index].visible = true;
     });
   }
 
@@ -211,11 +180,11 @@ export class DynamicFormComponent implements OnInit {
     /**
      * Extract Form Field Names and Values into an array of key value pairs
      */
-    const formValues = new Array<KeyValuePair>();
+    const formValues = [];
     if (form.controls) {
       Object.keys(form.controls).forEach(key => {
         if (form.controls[key].controls) {
-          formValues.push({ key, value: this.extractFormValues(form.controls[key]) });
+          formValues.push({ key, value: this.extractFormValues(form.controls[key])});
         } else {
           formValues.push({ key, value: form.get(key).value });
         }
