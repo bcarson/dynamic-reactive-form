@@ -238,42 +238,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/dynamic-reactive-form/tsconfig.lib.json",
             "project": "projects/dynamic-reactive-form/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/dynamic-reactive-form/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/dynamic-reactive-form/src/test.ts",
-            "tsConfig": "projects/dynamic-reactive-form/tsconfig.spec.json",
-            "karmaConfig": "projects/dynamic-reactive-form/karma.conf.js"
-          }
-        }
-      }
-    },
-    "dynamic-reactive-form-v2": {
-      "projectType": "library",
-      "root": "projects/dynamic-reactive-form-v2",
-      "sourceRoot": "projects/dynamic-reactive-form-v2/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/dynamic-reactive-form-v2/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/dynamic-reactive-form-v2/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/dynamic-reactive-form-v2/tsconfig.lib.json"
+              "tsConfig": "projects/dynamic-reactive-form/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -281,7 +253,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/dynamic-reactive-form-v2/tsconfig.spec.json",
+            "tsConfig": "projects/dynamic-reactive-form/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

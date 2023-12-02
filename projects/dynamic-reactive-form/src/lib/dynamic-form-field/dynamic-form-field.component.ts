@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, FormGroupDirective } from '@angular/forms';
+import { UntypedFormControl, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
 import { Field, FieldType } from '../models/dynamic-reactive-form.model';
 import { SentenceCasePipe } from '../sentence-case.pipe';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     SentenceCasePipe,
     MatCheckboxModule,
+    ReactiveFormsModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
