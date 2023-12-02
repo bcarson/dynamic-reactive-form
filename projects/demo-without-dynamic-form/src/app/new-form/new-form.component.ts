@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatOptionModule } from '@angular/material/core';
+import { NgFor } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
-  selector: 'app-new-form',
-  templateUrl: './new-form.component.html',
-  styleUrls: ['./new-form.component.scss']
+    selector: 'app-new-form',
+    templateUrl: './new-form.component.html',
+    styleUrls: ['./new-form.component.scss'],
+    standalone: true,
+    imports: [MatGridListModule, ReactiveFormsModule, MatListModule, MatFormFieldModule, MatInputModule, MatSelectModule, NgFor, MatOptionModule]
 })
 export class NewFormComponent implements OnInit {
   formLeft = new UntypedFormGroup({

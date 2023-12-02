@@ -16,11 +16,9 @@
       "dom"
     ],
     "paths": {
-      "dynamic-reactive-form": [
-        "dist/dynamic-reactive-form/dynamic-reactive-form",
-        "dist/dynamic-reactive-form"
+      "@dynamic-form": [
+        "dist/dynamic-reactive-form/public-api"
       ],
-      "@dynamic-form": ["projects/dynamic-reactive-form/src"]
     }
   }
 }

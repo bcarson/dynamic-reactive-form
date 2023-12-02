@@ -8,8 +8,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@dynamic-reactive-form-v2": [
-        "./dist/dynamic-reactive-form-v2"
+      "@dynamic-form": [
+        "./dist/dynamic-reactive-form/public-api"
       ]
     }
   },

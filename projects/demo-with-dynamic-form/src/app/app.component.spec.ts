@@ -6,14 +6,12 @@ import { AppMaterialModule } from '../../../demo-without-dynamic-form/src/app/ap
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         AppMaterialModule,
-        RouterTestingModule
-      ],
-      declarations: [
+        RouterTestingModule,
         AppComponent
-      ],
-    }).compileComponents();
+    ],
+}).compileComponents();
   }));
 
   it('should create the app', () => {

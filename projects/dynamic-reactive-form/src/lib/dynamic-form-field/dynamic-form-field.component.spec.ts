@@ -8,8 +8,8 @@ describe('DynamicFormFieldComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DynamicFormFieldComponent]
-    });
+    imports: [DynamicFormFieldComponent]
+});
     fixture = TestBed.createComponent(DynamicFormFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

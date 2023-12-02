@@ -11,13 +11,13 @@ describe('EditFormComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        AppMaterialModule
-      ],
-      declarations: [ EditFormComponent ]
-    })
+        AppMaterialModule,
+        EditFormComponent
+    ]
+})
     .compileComponents();
   }));
 
