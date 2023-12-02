@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular
 import { Field, KeyValuePair } from '../models/dynamic-reactive-form.model';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { NgxErrorsModule } from '@ngspot/ngx-errors';
+import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 @Component({
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgxErrorsModule],
+  imports: [FormsModule, ReactiveFormsModule, NgxErrorsModule, DynamicFormFieldComponent],
   selector: 'lib-dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.css']
@@ -156,6 +157,7 @@ export class DynamicFormComponent implements OnInit {
 
   toggleChildren(name, toggleValue): void {
     const parentIndex = this.fieldset.findIndex(field => field.name === name);
+
     if (toggleValue) {
       this.showChildren(parentIndex);
     } else {
@@ -170,19 +172,10 @@ export class DynamicFormComponent implements OnInit {
       return;
     }
 
-    parent.children.forEach((child, index) => {
-
-      const formField = this.form.get(child.name);
-
-      if (formField) {
-        formField.disable();
-      }
-
-      const childField = parent.children![index];
-      if (childField) {
-        childField.visible = false;
-      }
-    });
+    for (let i = 0; i < parent.children.length; i++) {
+      this.form.get(parent.children[i].name).disable();
+      parent.children[i].visible = false;
+    }
   }
 
   showChildren(parentIndex): void {
@@ -192,19 +185,10 @@ export class DynamicFormComponent implements OnInit {
       return;
     }
 
-    parent.children.forEach((child, index) => {
-
-      const formField = this.form.get(child.name);
-
-      if (formField) {
-        formField.enable();
-      }
-
-      const childField = parent.children![index];
-      if (childField) {
-        childField.visible = true;
-      }
-    });
+    for (let i = 0; i < parent.children.length; i++) {
+      this.form.get(parent.children[i].name).enable();
+      parent.children[i].visible = true;
+    }
   }
 
   extractFormValues(form): KeyValuePair[] {

@@ -24,7 +24,7 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatSlideToggleModule
   ],
-  selector: 'lib-dynamic-form-field',
+  selector: 'lib-dynamic-field',
   templateUrl: './dynamic-form-field.component.html',
   styleUrls: ['./dynamic-form-field.component.css']
 })

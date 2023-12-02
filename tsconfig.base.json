@@ -17,7 +17,7 @@
     ],
     "paths": {
       "@dynamic-form": [
-        "dist/dynamic-reactive-form/public-api"
+        "./dist/dynamic-reactive-form/"
       ],
     }
   }

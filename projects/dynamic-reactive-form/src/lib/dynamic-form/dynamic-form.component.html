@@ -1,12 +1,14 @@
 @if(formReady) {
 <form [formGroup]="form">
-    <ng-container *ngFor="let field of fieldset">
+    @for(field of fieldset; track field) {
         <lib-dynamic-field [field]="field"></lib-dynamic-field>
         <div [ngxErrors]="field.name">
-            <div *ngFor="let error of errors" [ngxError]="error.name" class="error">
-                {{ error.text }}
-            </div>
+            @for (error of errors; track error) {
+                <div [ngxError]="error.name" class="error">
+                    {{ error.message }}
+                </div>
+            }
         </div>
-    </ng-container>
+    }
 </form>
 }
