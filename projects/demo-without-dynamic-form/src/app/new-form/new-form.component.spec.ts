@@ -11,13 +11,13 @@ describe('NewFormComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        AppMaterialModule
-      ],
-      declarations: [ NewFormComponent ]
-    })
+        AppMaterialModule,
+        NewFormComponent
+    ]
+})
     .compileComponents();
   }));
 

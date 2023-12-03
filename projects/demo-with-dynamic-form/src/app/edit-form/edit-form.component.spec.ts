@@ -9,11 +9,9 @@ describe('EditFormComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppMaterialModule,
-        EditFormComponent
-      ]
-    })
+    imports: [AppMaterialModule],
+    declarations: [EditFormComponent]
+})
     .compileComponents();
   }));
 

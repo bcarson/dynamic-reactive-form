@@ -1,13 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Field, KeyValuePair, Error } from '@dynamic-form';
-
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Field, KeyValuePair } from '../models/dynamic-reactive-form.model';
+import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { NgxErrorsModule } from '@ngspot/ngx-errors';
+import { DynamicFormFieldComponent } from '../dynamic-form-field/dynamic-form-field.component';
 @Component({
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, NgxErrorsModule, DynamicFormFieldComponent],
   selector: 'lib-dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.scss']
+  styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit {
+
+  protected readonly formBuilder = inject(UntypedFormBuilder);
+
   /**
    * Initialize Inputs passed in from parent component
    */
@@ -25,15 +31,13 @@ export class DynamicFormComponent implements OnInit {
    * Initialize empty Reactive Form Group, set marker to false
    * until Form Controls have been added and the form is ready.
    */
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public formReady = false;
 
   /**
    * Allow optional slide toggles to show/hide conditional (child) fields.
    */
   private togglesWithChildren: { name: string, value: boolean, children: Field[] }[] = [];
-
-  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     /**
@@ -53,9 +57,9 @@ export class DynamicFormComponent implements OnInit {
   initializeForm(): void {
     this.form = this.formBuilder.group({});
 
-      /**
-       * Iterate through fields for each section
-       */
+    /**
+     * Iterate through fields for each section
+     */
     this.fieldset.forEach(field => {
       /**
        * Create each form field and add it to the Form Group
@@ -93,7 +97,7 @@ export class DynamicFormComponent implements OnInit {
     this.formReady = true;
   }
 
-  initializeFormControl(field): FormControl {
+  initializeFormControl(field): UntypedFormControl {
     let value;
 
     /**
@@ -153,6 +157,7 @@ export class DynamicFormComponent implements OnInit {
 
   toggleChildren(name, toggleValue): void {
     const parentIndex = this.fieldset.findIndex(field => field.name === name);
+
     if (toggleValue) {
       this.showChildren(parentIndex);
     } else {
@@ -160,31 +165,41 @@ export class DynamicFormComponent implements OnInit {
     }
   }
 
-  hideChildren(parentIndex): void {
+  hideChildren(parentIndex: number): void {
     const parent = { ...this.fieldset[parentIndex] };
-    parent.children.forEach((child, index) => {
-      this.form.get(child.name).disable();
-      parent.children[index].visible = false;
-    });
+
+    if (!parent.children) {
+      return;
+    }
+
+    for (let i = 0; i < parent.children.length; i++) {
+      this.form.get(parent.children[i].name).disable();
+      parent.children[i].visible = false;
+    }
   }
 
   showChildren(parentIndex): void {
     const parent = { ...this.fieldset[parentIndex] };
-    parent.children.forEach((child, index) => {
-      this.form.get(child.name).enable();
-      parent.children[index].visible = true;
-    });
+
+    if (!parent.children) {
+      return;
+    }
+
+    for (let i = 0; i < parent.children.length; i++) {
+      this.form.get(parent.children[i].name).enable();
+      parent.children[i].visible = true;
+    }
   }
 
   extractFormValues(form): KeyValuePair[] {
     /**
      * Extract Form Field Names and Values into an array of key value pairs
      */
-    const formValues = [];
+    const formValues = new Array<KeyValuePair>();
     if (form.controls) {
       Object.keys(form.controls).forEach(key => {
         if (form.controls[key].controls) {
-          formValues.push({ key, value: this.extractFormValues(form.controls[key])});
+          formValues.push({ key, value: this.extractFormValues(form.controls[key]) });
         } else {
           formValues.push({ key, value: form.get(key).value });
         }

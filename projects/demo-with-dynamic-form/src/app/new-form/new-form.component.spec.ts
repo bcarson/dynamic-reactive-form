@@ -9,11 +9,8 @@ describe('NewFormComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppMaterialModule,
-        NewFormComponent
-      ]
-    })
+    imports: [NewFormComponent, AppMaterialModule]
+})
     .compileComponents();
   }));
 
